@@ -1,229 +1,192 @@
-# Brain Tumor Detection using Deep Learning with Synthetic MRI Generation
+🧠 Brain Tumor Detection using Deep Learning with Synthetic MRI Generation
+📌 Overview
 
-## Overview
+This project presents an end-to-end deep learning pipeline for brain tumor detection from MRI scans using a multimodal AI approach.
 
-This project implements an end-to-end deep learning pipeline for **brain tumor detection from MRI scans** using **MobileNetV2 transfer learning**. To improve dataset size and diversity, a **Generative Adversarial Network (GAN)** is used to generate synthetic MRI images for four tumor classes.
+The system combines:
 
-The goal is to improve classification performance by combining **real medical images with GAN-generated synthetic data**.
+Convolutional Neural Network (CNN – MobileNetV2) for image classification
+Vision Transformer (ViT) for model comparison and improved reliability
+Generative Adversarial Network (GAN) for synthetic MRI image generation
+NLP-based symptom analysis for additional context
 
----
+The goal is to improve prediction accuracy and robustness by integrating multiple models and synthetic data augmentation.
 
-## Project Features
+🚀 Key Features
+Brain tumor classification from MRI images
+Dual-model prediction (CNN + Vision Transformer)
+Synthetic MRI dataset generation using GAN
+Multimodal system (Image + Symptoms)
+Data augmentation and improved generalization
+Streamlit-based interactive web interface
+Model comparison and confidence visualization
+Explainable AI using Grad-CAM
+🧬 Classes Detected
 
-- Brain tumor classification from MRI scans
-- Synthetic MRI dataset generation using GAN
-- Transfer learning using MobileNetV2
-- Data augmentation for improved generalization
-- Visualization of training metrics
-- Modular pipeline for training and inference
-- Streamlit-based interface for predictions
+The model classifies MRI scans into:
 
----
-
-## Classes Detected
-
-The model detects the following MRI categories:
-
-- Glioma Tumor
-- Meningioma Tumor
-- Pituitary Tumor
-- No Tumor
-
----
-
-## Project Structure
-
-
+Glioma Tumor
+Meningioma Tumor
+Pituitary Tumor
+No Tumor
+📁 Project Structure
 brain-tumor-detection/
 │
-├── Training/ # Real MRI training dataset
-├── Testing/ # Real MRI testing dataset
-├── synthetic_dataset/ # GAN generated images
+├── Training/                     # Real MRI training dataset
+├── Testing/                      # Real MRI testing dataset
+├── synthetic_dataset/            # GAN-generated images
 │
-├── gan_models/ # Saved GAN models
-├── gan_preview/ # GAN training preview images
+├── gan_models/                   # Saved GAN generator models
+├── gan_preview/                  # GAN training preview images
+├── gan_checkpoints/              # GAN training checkpoints
 │
-├── mri_gan_generator.py # GAN training script
-├── brain_tumor_training.py # CNN training with real + synthetic data
-├── brain_tumor_streamlit.py # Web interface for prediction
+├── mri_gan_generator.py          # GAN training & synthetic image generation
+├── brain_tumor_training.py       # CNN training (real + synthetic data)
+├── brain_tumor_streamlit.py      # Streamlit web application
+├── metrics.py                    # Model evaluation (CNN / ViT comparison)
+│
+├── my_brain_tumor_mobilenetv2.h5 # Trained CNN model
+├── best_vit_model.pth            # Trained Vision Transformer model
 │
 ├── requirements.txt
 ├── .gitignore
 └── README.md
 
 
----
-
-## Technologies Used
-
-- Python
-- TensorFlow / Keras
-- NumPy
-- OpenCV
-- Matplotlib
-- PIL
-- Streamlit
-
----
-
-## Deep Learning Models
-
-### GAN Model
-Used to generate synthetic MRI images for each class.
-
-- Generator: Deep convolutional generator
-- Discriminator: CNN based discriminator
-- Latent space: 128 dimensional noise vector
-
-### Classification Model
-
-Transfer learning using:
-
-MobileNetV2
-
-with additional layers:
-
-- GlobalAveragePooling
-- Dense Layer
-- Dropout
-- Softmax Output
-
----
-
-## Dataset
-
-The project uses a brain MRI dataset containing four classes.
-
-Real MRI images are augmented with synthetic images generated using GAN to increase training diversity.
-
----
-
-## Installation
-
-Clone the repository
+🧠 Deep Learning Models
 
 
-git clone https://github.com/YOUR\_USERNAME/brain-tumor-detection.git
+🔹 1. CNN (MobileNetV2)
+Transfer learning from ImageNet
+Used for primary tumor classification
+Lightweight and efficient for medical images
 
+Architecture additions:
+
+GlobalAveragePooling
+Dense layer
+Dropout
+Softmax output
+
+
+🔹 2. Vision Transformer (ViT)
+Transformer-based image model
+Captures global image relationships
+Used for model comparison and validation
+
+👉 Helps improve prediction reliability by comparing outputs with CNN
+
+🔹 3. GAN (Synthetic Data Generation)
+
+Used to generate realistic MRI images for each class.
+
+Generator: Deep convolutional network
+Discriminator: CNN-based classifier
+Latent space: 128-dimensional noise vector
+
+👉 Purpose:
+
+Increase dataset size
+Improve model generalization
+Reduce overfitting
+🔹 4. NLP Model (Symptoms Analysis)
+TF-IDF vectorization
+Logistic Regression classifier
+
+👉 Used to:
+
+Predict tumor type based on symptoms
+Support multimodal decision-making
+🧪 Dataset
+Source: Kaggle Brain MRI Dataset
+Classes: Glioma, Meningioma, Pituitary, No Tumor
+
+To enhance training:
+
+Real MRI images are combined with GAN-generated synthetic images
+
+⚠️ Note: Dataset is not included due to size limitations.
+Download from:
+https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset
+
+⚙️ Installation
+git clone https://github.com/mananpal-dev/brain-tumor-detection.git
 cd brain-tumor-detection
-
-
-Install dependencies
-
-
 pip install -r requirements.txt
-
-
----
-
-## Training GAN (Synthetic Dataset Generation)
-
-Run:
-
-
+🧪 GAN Training (Synthetic Data Generation)
 python mri_gan_generator.py
-
 
 This will:
 
-- Train GAN for each class
-- Save generator models
-- Generate synthetic MRI images
+Train GAN models for each class
+Save generator models
+Generate synthetic MRI images
 
 Output:
 
-
 synthetic_dataset/
-
-
----
-
-## Training the Classification Model
-
-Run:
-
-
+🏋️ CNN Training
 python brain_tumor_training.py
 
 
-The model will train using:
+Training includes:
 
-- Real MRI dataset
-- GAN generated synthetic dataset
-
----
-
-## Running the Streamlit App
-
-
+Real dataset
+GAN-generated synthetic dataset
+Data augmentation
+Early stopping and learning rate scheduling
+🌐 Running the Application
 streamlit run brain_tumor_streamlit.py
 
 
-Upload an MRI scan to predict tumor type.
+Features:
 
----
+Upload MRI image
+Get predictions from CNN and ViT
+View confidence scores
+Compare model outputs
+Optional symptom-based prediction
 
-## Model Performance
 
-Training includes:
+📊 Model Evaluation
 
-- Early stopping
-- Learning rate scheduling
-- Data augmentation
+Evaluation includes:
 
-Evaluation metrics include:
+Accuracy
+Loss curves
+Classification report (Precision, Recall, F1-score)
+CNN vs ViT comparison
 
-- Accuracy
-- Loss curves
-- Classification report
 
----
 
-## Future Improvements
+🎨 UI Improvements (Latest Updates)
 
-- Use StyleGAN for higher quality synthetic MRI images
-- Deploy model as a web application
-- Add segmentation for tumor localization
-- Improve dataset size
+Updated Streamlit UI with modern layout
+Removed deprecated parameters (use_column_width)
+Added loading spinner for better UX
+Improved prediction display using metrics
+Enhanced visualization and model comparison
+Clear agreement/disagreement feedback
 
----
 
-## Author
+🚀 System Upgrade
 
-Manan Pal  
-B.Tech CSE  
+The system has been upgraded from a single CNN model to a multimodal AI system:
+
+CNN → Primary prediction
+ViT → Validation & comparison
+GAN → Data augmentation
+NLP → Symptom analysis
+
+👉 This improves robustness, interpretability, and performance.
+
+
+👨‍💻 Author
+
+Manan Pal
+B.Tech CSE
 KIIT University
 
----
+📜 License
 
-## License
-
-This project is for educational and research purposes.
-
-## Dataset Source
-
-The MRI brain tumor dataset used in this project was obtained from Kaggle.
-
-Dataset Link:
-https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset
-
-The dataset contains MRI images categorized into four classes:
-
-- Glioma
-- Meningioma
-- Pituitary Tumor
-- No Tumor
-
-The dataset is used for academic and research purposes only. 
-
-To improve model generalization and increase training data size, additional synthetic MRI images were generated using a Generative Adversarial Network (GAN).
-
-## Dataset
-
-The project uses a publicly available Brain MRI dataset sourced from Kaggle. 
-The dataset consists of MRI images categorized into four classes.
-
-To improve model robustness, the training dataset is expanded using GAN-generated synthetic images.
-
-Note: Due to size limitations, the dataset is not included in this repository. 
-Please download it from the Kaggle link provided above.
+This project is for educational and research purposes only.
