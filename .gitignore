@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Models
+*.h5
+*.pt
+*.pth
+
+# GAN models
+gan_models/
+
+# Generated data
+synthetic_dataset/
+gan_preview/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Dataset (optional if very large)
+Training/
+Testing/
+
+# Streamlit
+.streamlit/
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.swp
+
+# Python build
+build/
+dist/
+*.egg-info/
+
+# cache
+.cache/
