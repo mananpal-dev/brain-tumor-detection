@@ -1,4 +1,4 @@
-# Python
+git rm -r --cached venv# Python
 __pycache__/
 *.pyc
 *.pyo
