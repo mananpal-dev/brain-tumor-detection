@@ -1,30 +1,21 @@
-# Brain Tumor Detection — Python dependencies
-# ============================================
-# Install with:
-#   pip install -r requirements.txt
-#
-# Tested on Python 3.10 / 3.11
+# Web App
+streamlit==1.58.0
 
-# ── Deep learning ──────────────────────────────────────────────────────────
+# Deep Learning
 tensorflow==2.21.0
-torch==2.12.0
-transformers==5.11.0
 
-# ── Transformers (ViT) ─────────────────────────────────────────────────────
-transformers>=4.35.0
-
-# ── Image processing ──────────────────────────────────────────────────────
+# Image Processing
 Pillow>=10.0.0
-opencv-python>=4.8.0
+opencv-python-headless>=4.11.0
 
-# ── Scientific computing ──────────────────────────────────────────────────
+# Scientific Computing
 numpy>=1.24.0,<2.0.0
 matplotlib>=3.7.0
 seaborn>=0.13.0
 
-# ── ML utilities ──────────────────────────────────────────────────────────
+# Machine Learning Utilities
 scikit-learn>=1.3.0
 tqdm>=4.66.0
 
-# ── Web application ───────────────────────────────────────────────────────
-streamlit>=1.28.0
+# Transformers (ViT)
+transformers==4.41.2
