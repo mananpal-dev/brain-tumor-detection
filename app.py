@@ -11,6 +11,7 @@ Author : Manan Pal  (B.Tech CSE, KIIT University)
 """
 
 from __future__ import annotations
+from huggingface_hub import hf_hub_download
 
 import io
 import logging
@@ -27,6 +28,16 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from tensorflow.keras.models import load_model
 from transformers import ViTForImageClassification
+
+cnn_path = hf_hub_download(
+    repo_id="mananpal/brain-tumor-detection-models",
+    filename="my_brain_tumor_mobilenetv2.h5"
+)
+
+vit_path = hf_hub_download(
+    repo_id="mananpal/brain-tumor-detection-models",
+    filename="best_vit_model.pth"
+)
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -723,8 +734,8 @@ CLASS_INFO: dict[str, dict] = {
     },
 }
 
-CNN_MODEL_PATH: str = os.environ.get("CNN_MODEL_PATH", "my_brain_tumor_mobilenetv2.h5")
-VIT_MODEL_PATH: str = os.environ.get("VIT_MODEL_PATH", "best_vit_model.pth")
+CNN_MODEL_PATH = "my_brain_tumor_mobilenetv2.h5"
+VIT_MODEL_PATH = "best_vit_model.pth"
 
 TUMOR_COLORS: dict[str, str] = {
     "Glioma":     "#3b82f6",
