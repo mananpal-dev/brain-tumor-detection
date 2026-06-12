@@ -734,8 +734,8 @@ CLASS_INFO: dict[str, dict] = {
     },
 }
 
-CNN_MODEL_PATH = "my_brain_tumor_mobilenetv2.h5"
-VIT_MODEL_PATH = "best_vit_model.pth"
+CNN_MODEL_PATH = cnn_path
+VIT_MODEL_PATH = vit_path
 
 TUMOR_COLORS: dict[str, str] = {
     "Glioma":     "#3b82f6",
